@@ -27,16 +27,16 @@ async fn main() -> std::io::Result<()> {
         .await
     {
         Ok(pool) => {
-            println!("✅Connection to the database is successful!");
+            println!("✅Conexion a la base de datos exitosa");
             pool
         }
         Err(err) => {
-            println!("🔥 Failed to connect to the database: {:?}", err);
+            println!("🔥 Error al conectar a la base de datos: {:?}", err);
             std::process::exit(1);
         }
     };
 
-    println!("🚀 Server started successfully");
+    println!("🚀 Servidor iniciado correctamente");
 
     HttpServer::new(move || {
         let cors = Cors::default()

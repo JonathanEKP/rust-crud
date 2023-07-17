@@ -54,10 +54,10 @@ async fn create_products_handler(
 ) -> impl Responder{
     let query_result = sqlx::query_as!(
         ProductModel,
-        "INSERT INTO products (name, price, quantity) VALUES ($1, $2, $3) RETURNING *",
-        body.name.to_string(),
-        body.price,
-        body.quantity,
+        "INSERT INTO products (product_name, price, quantity) VALUES ($1, $2, $3) RETURNING *",
+        body.product_name.to_string(),
+        body.price.to_string(),
+        body.quantity.to_string(),
     ).fetch_one(&data.db).await;
 
     match query_result{
@@ -120,16 +120,14 @@ async fn edit_product_handler(
         return HttpResponse::NotFound().json(serde_json::json!({"status":"fail","message": message}));
     }
 
-    let now = Utc::now();
     let product = query_result.unwrap();
 
     let query_result = sqlx::query_as!(
         ProductModel,
-        "UPDATE products SET name = $1, price = $2, quantity = $3, updated_at = $4 WHERE id = $5 RETURNING *",
-        body.name.to_owned().unwrap_or(product.name),
+        "UPDATE products SET product_name = $1, price = $2, quantity = $3 WHERE id = $4 RETURNING *",
+        body.product_name.to_owned().unwrap_or(product.product_name),
         body.price.to_owned().unwrap_or(product.price),
         body.quantity.to_owned().unwrap_or(product.quantity),
-        now,
         product_id
     ).fetch_one(&data.db).await;
     

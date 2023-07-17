@@ -13,14 +13,14 @@ pub struct ParamOptions {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct CreateProductSchema{
-    pub name: String,
-    pub price: f64,
-    pub quantity: i32,
+    pub product_name: String,
+    pub price: String,
+    pub quantity: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct UpdateProductSchema{
-    pub name: Option<String>,
-    pub price: Option<f64>,
-    pub quantity: Option<i32>,
+    pub product_name: Option<String>,
+    pub price: Option<String>,
+    pub quantity: Option<String>,
 }

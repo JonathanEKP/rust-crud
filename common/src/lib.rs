@@ -1,12 +1,12 @@
 //ESTAS ESTRUCTURAS DESCRIBEN LA ESTRUCTURA DEL PRODUCTO QUE SQLX VA A RETORNAR DE LA BASE DE DATOS Y LAS RESPUESTAS DEL JSON QUE LA API PROVEERA.
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, Clone )]
 pub struct Product{
     pub id: uuid::Uuid,
     pub name: String,
-    pub price: f64,
-    pub quantity: u32,
+    pub price: String,
+    pub quantity: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
